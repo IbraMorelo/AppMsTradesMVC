@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MsTradeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="UserRol" />
+          </Key>
+          <Property Name="UserRol" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="IdPerfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Servicio">
+          <Key>
+            <PropertyRef Name="IdServicio" />
+          </Key>
+          <Property Name="IdServicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCliente" Type="nvarchar" MaxLength="150" />
+          <Property Name="Ciudad" Type="varchar(max)" />
+          <Property Name="Barrio" Type="varchar(max)" />
+          <Property Name="Direccion" Type="varchar(max)" />
+          <Property Name="PrecioVenta" Type="float" />
+          <Property Name="Area" Type="varchar(max)" />
+          <Property Name="Estrato" Type="varchar(max)" />
+          <Property Name="PrecioServicio" Type="float" />
+          <Property Name="Caracteristicas" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="ServicioComision">
+          <Key>
+            <PropertyRef Name="IdServicio" />
+          </Key>
+          <Property Name="IdServicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCliente" Type="nvarchar" MaxLength="150" />
+          <Property Name="Ciudad" Type="varchar(max)" />
+          <Property Name="Barrio" Type="varchar(max)" />
+          <Property Name="Direccion" Type="varchar(max)" />
+          <Property Name="PrecioVenta" Type="float" />
+          <Property Name="Area" Type="varchar(max)" />
+          <Property Name="Estrato" Type="varchar(max)" />
+          <Property Name="PrecioServicio" Type="float" />
+          <Property Name="Caracteristicas" Type="varchar(max)" />
+          <Property Name="EmailS" Type="nvarchar" MaxLength="150" />
+          <Property Name="PorcentajeComision" Type="float" />
+          <Property Name="TotalComision" Type="float" />
+        </EntityType>
+        <EntityType Name="ServicioHost">
+          <Key>
+            <PropertyRef Name="IdServicio" />
+          </Key>
+          <Property Name="IdServicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCliente" Type="nvarchar" MaxLength="150" />
+          <Property Name="Ciudad" Type="varchar(max)" />
+          <Property Name="Barrio" Type="varchar(max)" />
+          <Property Name="Direccion" Type="varchar(max)" />
+          <Property Name="PrecioVenta" Type="float" />
+          <Property Name="Area" Type="varchar(max)" />
+          <Property Name="Estrato" Type="varchar(max)" />
+          <Property Name="PrecioServicio" Type="float" />
+          <Property Name="Caracteristicas" Type="varchar(max)" />
+          <Property Name="EmailS" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="200" />
+          <Property Name="PasswordSalt" Type="varchar" MaxLength="200" />
+          <Property Name="Nombre" Type="varchar(max)" />
+          <Property Name="Apellido" Type="varchar(max)" />
+          <Property Name="TelefonoFijo" Type="varchar(max)" />
+          <Property Name="TelefonoCellular" Type="varchar(max)" />
+          <Property Name="Direccion" Type="varchar(max)" />
+          <Property Name="Ciudad" Type="varchar(max)" />
+          <Property Name="PerfilU" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <Association Name="FK__ServicioC__Email__46E78A0C">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="ServicioComision" Type="Self.ServicioComision" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="ServicioComision">
+              <PropertyRef Name="EmailS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServicioH__Email__44FF419A">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="ServicioHost" Type="Self.ServicioHost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="ServicioHost">
+              <PropertyRef Name="EmailS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_TipoPerfil">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="UserRol" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="PerfilU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MsTradeModelStoreContainer">
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Servicio" EntityType="Self.Servicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServicioComision" EntityType="Self.ServicioComision" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServicioHost" EntityType="Self.ServicioHost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ServicioC__Email__46E78A0C" Association="Self.FK__ServicioC__Email__46E78A0C">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="ServicioComision" EntitySet="ServicioComision" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServicioH__Email__44FF419A" Association="Self.FK__ServicioH__Email__44FF419A">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="ServicioHost" EntitySet="ServicioHost" />
+          </AssociationSet>
+          <AssociationSet Name="fk_TipoPerfil" Association="Self.fk_TipoPerfil">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MsTradeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="UserRol" />
+          </Key>
+          <Property Name="UserRol" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdPerfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_TipoPerfil" FromRole="Perfil" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Servicio">
+          <Key>
+            <PropertyRef Name="IdServicio" />
+          </Key>
+          <Property Name="IdServicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCliente" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Ciudad" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Barrio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PrecioVenta" Type="Double" />
+          <Property Name="Area" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Estrato" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PrecioServicio" Type="Double" />
+          <Property Name="Caracteristicas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ServicioComision">
+          <Key>
+            <PropertyRef Name="IdServicio" />
+          </Key>
+          <Property Name="IdServicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCliente" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Ciudad" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Barrio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PrecioVenta" Type="Double" />
+          <Property Name="Area" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Estrato" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PrecioServicio" Type="Double" />
+          <Property Name="Caracteristicas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EmailS" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PorcentajeComision" Type="Double" />
+          <Property Name="TotalComision" Type="Double" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__ServicioC__Email__46E78A0C" FromRole="ServicioComision" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="ServicioHost">
+          <Key>
+            <PropertyRef Name="IdServicio" />
+          </Key>
+          <Property Name="IdServicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCliente" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Ciudad" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Barrio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PrecioVenta" Type="Double" />
+          <Property Name="Area" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Estrato" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PrecioServicio" Type="Double" />
+          <Property Name="Caracteristicas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EmailS" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__ServicioH__Email__44FF419A" FromRole="ServicioHost" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordSalt" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoFijo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoCellular" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PerfilU" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Perfil" Relationship="Self.fk_TipoPerfil" FromRole="Usuario" ToRole="Perfil" />
+          <NavigationProperty Name="ServicioComision" Relationship="Self.FK__ServicioC__Email__46E78A0C" FromRole="Usuario" ToRole="ServicioComision" />
+          <NavigationProperty Name="ServicioHost" Relationship="Self.FK__ServicioH__Email__44FF419A" FromRole="Usuario" ToRole="ServicioHost" />
+        </EntityType>
+        <Association Name="fk_TipoPerfil">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="UserRol" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="PerfilU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServicioC__Email__46E78A0C">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="ServicioComision" Type="Self.ServicioComision" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="ServicioComision">
+              <PropertyRef Name="EmailS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServicioH__Email__44FF419A">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="ServicioHost" Type="Self.ServicioHost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="ServicioHost">
+              <PropertyRef Name="EmailS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MsTradeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" />
+          <EntitySet Name="Servicio" EntityType="Self.Servicio" />
+          <EntitySet Name="ServicioComision" EntityType="Self.ServicioComision" />
+          <EntitySet Name="ServicioHost" EntityType="Self.ServicioHost" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="fk_TipoPerfil" Association="Self.fk_TipoPerfil">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServicioC__Email__46E78A0C" Association="Self.FK__ServicioC__Email__46E78A0C">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="ServicioComision" EntitySet="ServicioComision" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServicioH__Email__44FF419A" Association="Self.FK__ServicioH__Email__44FF419A">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="ServicioHost" EntitySet="ServicioHost" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MsTradeModelStoreContainer" CdmEntityContainer="MsTradeEntities">
+          <EntitySetMapping Name="Perfil">
+            <EntityTypeMapping TypeName="MsTradeModel.Perfil">
+              <MappingFragment StoreEntitySet="Perfil">
+                <ScalarProperty Name="UserRol" ColumnName="UserRol" />
+                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servicio">
+            <EntityTypeMapping TypeName="MsTradeModel.Servicio">
+              <MappingFragment StoreEntitySet="Servicio">
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Barrio" ColumnName="Barrio" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="PrecioVenta" ColumnName="PrecioVenta" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Estrato" ColumnName="Estrato" />
+                <ScalarProperty Name="PrecioServicio" ColumnName="PrecioServicio" />
+                <ScalarProperty Name="Caracteristicas" ColumnName="Caracteristicas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServicioComision">
+            <EntityTypeMapping TypeName="MsTradeModel.ServicioComision">
+              <MappingFragment StoreEntitySet="ServicioComision">
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Barrio" ColumnName="Barrio" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="PrecioVenta" ColumnName="PrecioVenta" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Estrato" ColumnName="Estrato" />
+                <ScalarProperty Name="PrecioServicio" ColumnName="PrecioServicio" />
+                <ScalarProperty Name="Caracteristicas" ColumnName="Caracteristicas" />
+                <ScalarProperty Name="EmailS" ColumnName="EmailS" />
+                <ScalarProperty Name="PorcentajeComision" ColumnName="PorcentajeComision" />
+                <ScalarProperty Name="TotalComision" ColumnName="TotalComision" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServicioHost">
+            <EntityTypeMapping TypeName="MsTradeModel.ServicioHost">
+              <MappingFragment StoreEntitySet="ServicioHost">
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Barrio" ColumnName="Barrio" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="PrecioVenta" ColumnName="PrecioVenta" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Estrato" ColumnName="Estrato" />
+                <ScalarProperty Name="PrecioServicio" ColumnName="PrecioServicio" />
+                <ScalarProperty Name="Caracteristicas" ColumnName="Caracteristicas" />
+                <ScalarProperty Name="EmailS" ColumnName="EmailS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="MsTradeModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="TelefonoFijo" ColumnName="TelefonoFijo" />
+                <ScalarProperty Name="TelefonoCellular" ColumnName="TelefonoCellular" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="PerfilU" ColumnName="PerfilU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section menu {
+    @Html.Raw(ViewBag.HtmlOutput)
+}
+
+@section section {
+<div class="container">
+    <div class="jumbotron">
+        <h1 id="hello,-world!">MS-TRADES<a class="anchorjs-link" href="#hello,-world!"><span class="anchorjs-icon"></span></a></h1>
+        <p class="text-justify" style="font-size:14px;">
+            Se desea desarrollar una aplicación web de finca raíz, para compra, venta y renta de bienes e inmuebles. Donde habrá un usuario llamado administrador capaz de asignar roles a unos vendedores llamados agentes, a su vez el sistema permitirá la creación de un usuario nombrado cliente que se divide en dos categorías: comprador y vendedor.
+            <br /><br />El sistema ofrecerá dos tipos de servicios para la gestión de los bienes e inmuebles:
+            <br /><br /><strong>1.Servicio Por Host: el cliente podrá hacer una publicación de un bien e inmueble, en dicha publicación deberá ser aprobada por un agente elegido previamente por el mismo cliente. el sistema cobrará un valor por la prestación del servicio.</strong>
+            <br /><br /><strong>2.Servicio De Comisión: este servicio tendrá las mismas características que el servicio por host, además que se podrá asignar la tarea a un agente de llevar a cabo todo el proceso de venta, a cambio de un porcentaje llamado “comisión”, que se calcula en base al precio de la venta.</strong>
+        </p>
+        <a class="btn btn-danger btn-lg" href="/Home/About">About Us</a>
+    </div>
+</div>
+}

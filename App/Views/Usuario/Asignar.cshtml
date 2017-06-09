@@ -1,0 +1,98 @@
+﻿@{
+    if (!Request.IsAuthenticated)
+    {
+        Response.Redirect("~/Usuario/LogIn");
+    }
+}
+@model App.Models.Usuario
+@{
+    ViewBag.Title = "Asignar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+    <div class="container">
+        @Html.ValidationSummary(true, "Registro asignacion, Revise sus campos")
+        <div class="form-signin well">
+            <fieldset>
+                <legend>Asignar Usuario</legend>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, "Nombre de Usuario", new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, "Contraseña", new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PasswordSalt, "Confirmar Contraseña", new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.PasswordFor(model => model.PasswordSalt, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PasswordSalt)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nombre, "Nombre", new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Nombre)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Apellido, "Apellido", new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.Apellido, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Apellido)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TelefonoFijo, "Telefono Fijo", new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.TelefonoFijo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.TelefonoFijo)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TelefonoCellular, "Telefono Celular", new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.TelefonoCellular, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.TelefonoCellular)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Direccion, "Direccion", new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.Direccion, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Direccion)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Ciudad, "Ciudad", new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.Ciudad, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Ciudad)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PerfilU, "Rol", new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.DropDownList("PerfilU", String.Empty)
+                        @Html.ValidationMessageFor(model => model.PerfilU)
+                    </div>
+                </div>
+                <p>
+                    <input class="btn btn-lg btn-danger pull-right"  type="submit" value="Asignar" />
+                </p>
+            </fieldset>
+            </div>
+        </div>
+        }

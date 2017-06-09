@@ -1,0 +1,95 @@
+﻿@model App.Models.ServicioComision
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    <div class="container">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="form-signin well">
+            <fieldset>
+                <legend>Servicio Comision<br />Precio de Servicio: 10000.0</legend>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Ciudad, new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.Ciudad, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Ciudad)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Barrio, new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.Barrio, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Barrio)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Direccion, new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.Direccion, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Direccion)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PrecioVenta, new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.PrecioVenta, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PrecioVenta)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Area, new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.Area, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Area)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Estrato, new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.Estrato, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Estrato)
+                    </div>
+                </div>
+                <div class="form-group text-area">
+                    @Html.LabelFor(model => model.Caracteristicas, new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.TextAreaFor(model => model.Caracteristicas, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Caracteristicas)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EmailS, "Agente", new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.DropDownList("EmailS", String.Empty)
+                        @Html.ValidationMessageFor(model => model.EmailS)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PorcentajeComision, new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.PorcentajeComision, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PorcentajeComision)
+                    </div>
+                </div>
+                <p>
+                    <input class="btn btn-lg btn-danger pull-right" type="submit" value="Crear" />
+                </p>
+            </fieldset>
+            </div>
+        </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

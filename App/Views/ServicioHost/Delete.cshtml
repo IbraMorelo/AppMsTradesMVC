@@ -1,0 +1,97 @@
+﻿@model App.Models.ServicioHost
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>ServicioHost</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IdServicio)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdServicio)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IdCliente)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdCliente)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Ciudad)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Ciudad)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Barrio)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Barrio)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Direccion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Direccion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PrecioVenta)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PrecioVenta)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Area)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Area)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Estrato)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Estrato)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PrecioServicio)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PrecioServicio)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Caracteristicas)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Caracteristicas)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Usuario.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Usuario.Email)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

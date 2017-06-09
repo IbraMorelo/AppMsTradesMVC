@@ -1,0 +1,52 @@
+﻿@model IEnumerable<App.Models.ServicioComision>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container well">
+    <h2>Catalogo</h2>
+    <div class="row">
+        @foreach (var item in ViewBag.serC)
+        {
+            <div class="col-sm-4">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        @item.Area
+                    </div>
+                    <div class="panel-body">
+                        <span>Ciudad - @item.Ciudad</span><br/>
+                        <span>Barrio - @item.Barrio</span><br/>
+                        <span>Dirección - @item.Direccion</span><br/>
+                        <span>Precio de Venta - @item.PrecioVenta</span><br />
+                        <span>Estrato - @item.Estrato</span><br />
+                        <span>Características - @item.Caracteristicas</span><br />
+                        <span>E-mail de Contacto - @item.EmailS</span><br />
+                    </div>
+                </div>
+            </div>
+        }
+
+
+        @foreach (var item in ViewBag.serH)
+        {
+            <div class="col-sm-4">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        @item.Area
+                    </div>
+                    <div class="panel-body">
+                        <span>Ciudad - @item.Ciudad</span><br />
+                        <span>Barrio - @item.Barrio</span><br />
+                        <span>Dirección - @item.Direccion</span><br />
+                        <span>Precio de Venta - @item.PrecioVenta</span><br />
+                        <span>Estrato - @item.Estrato</span><br />
+                        <span>Características - @item.Caracteristicas</span><br />
+                        <span>E-mail de Contacto - @item.IdCliente</span><br />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>

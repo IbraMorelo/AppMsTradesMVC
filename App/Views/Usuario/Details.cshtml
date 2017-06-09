@@ -1,0 +1,92 @@
+﻿@{
+    if (!Request.IsAuthenticated)
+    {
+        Response.Redirect("~/Usuario/LogIn");
+    }
+}
+@model App.Models.Usuario
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="form-signin well">
+        <fieldset>
+            <legend>Usuario</legend>
+
+            <div class="col-sm-3">
+                <strong>@Html.DisplayNameFor(model => model.IdUsuario)</strong>
+            </div>
+            <div class="col-sm-9">
+                @Html.DisplayFor(model => model.IdUsuario)
+            </div>
+
+            <div class="col-sm-3">
+                <strong>@Html.DisplayNameFor(model => model.Email)</strong>
+            </div>
+            <div class="col-sm-9">
+                @Html.DisplayFor(model => model.Email)
+            </div>
+
+            <div class="col-sm-3">
+                <strong>@Html.DisplayNameFor(model => model.Password)</strong>
+            </div>
+            <div class="col-sm-9">
+                *******
+            </div>
+
+            <div class="col-sm-3">
+                <strong>@Html.DisplayNameFor(model => model.Nombre)</strong>
+            </div>
+            <div class="col-sm-9">
+                @Html.DisplayFor(model => model.Nombre)
+            </div>
+
+            <div class="col-sm-3">
+                <strong>@Html.DisplayNameFor(model => model.Apellido)</strong>
+            </div>
+            <div class="col-sm-9">
+                @Html.DisplayFor(model => model.Apellido)
+            </div>
+
+            <div class="col-sm-3">
+                <strong>@Html.DisplayNameFor(model => model.TelefonoFijo)</strong>
+            </div>
+            <div class="col-sm-9">
+                @Html.DisplayFor(model => model.TelefonoFijo)
+            </div>
+
+            <div class="col-sm-3">
+                <strong>@Html.DisplayNameFor(model => model.TelefonoCellular)</strong>
+            </div>
+            <div class="col-sm-9">
+                @Html.DisplayFor(model => model.TelefonoCellular)
+            </div>
+
+            <div class="col-sm-3">
+                <strong>@Html.DisplayNameFor(model => model.Direccion)</strong>
+            </div>
+            <div class="col-sm-9">
+                @Html.DisplayFor(model => model.Direccion)
+            </div>
+
+            <div class="col-sm-3">
+                <strong>@Html.DisplayNameFor(model => model.Ciudad)</strong>
+            </div>
+            <div class="col-sm-9">
+                @Html.DisplayFor(model => model.Ciudad)
+            </div>
+
+            <div class="col-sm-3">
+                <strong>@Html.DisplayNameFor(model => model.Perfil.UserRol)</strong>
+            </div>
+            <div class="col-sm-9">
+                @Html.DisplayFor(model => model.Perfil.UserRol)
+            </div>
+        </fieldset>
+    </div>
+    <p>
+        <div class="btn btn-danger">@Html.ActionLink("Editar Información", "Edit", "Usuario")</div>
+    </p>
+</div>

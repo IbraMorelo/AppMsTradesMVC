@@ -1,0 +1,96 @@
+﻿@{
+    if (!Request.IsAuthenticated)
+    {
+        Response.Redirect("~/Usuario/LogIn");
+    }
+}
+
+@model IEnumerable<App.Models.ServicioHost>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdServicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ciudad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Barrio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrecioVenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Area)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estrato)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrecioServicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Caracteristicas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdServicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ciudad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Barrio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrecioVenta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Area)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estrato)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrecioServicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Caracteristicas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.Email)
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title- MS-Trades</title>
+    <link href="~/Icons.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="http://mstrades.azurewebsites.net/" class="navbar-brand">MsTrades</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Catalogo", "Index", "Catalogo")</li>
+                    @RenderSection("menu", required: false)
+                    
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink(User.Identity.Name, "Details", "Usuario")</li>
+                        <li>@Html.ActionLink("Salir", "LogOut", "Usuario")</li>
+
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Registrarse", "Registration", "Usuario")</li>
+                        <li> @Html.ActionLink("Ingresar", "logIn", "Usuario")</li>
+
+                    }
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+  @RenderSection("section", required: false)
+    
+    @RenderBody()
+
+    
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">
+                Caso de Estudio - Ediwn Alexander Puertas del Castillo
+                | MS-Trades Cartagena 2015
+            </p>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
